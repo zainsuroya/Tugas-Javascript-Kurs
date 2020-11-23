@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kurs Rupiah</title>
+
+    <style>
+        table {
+            margin: 10px 0px;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 5px 10px;
+        }
+
+        input,
+        select {
+            padding: 8px 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <form>
+        <fieldset>
+            <legend>Kurs Rupiah - Mata Uang Asing</legend>
+            <table>
+                <tr>
+                    <td>Masukan Nilai</td>
+                    <td>Valas</td>
+                    <td>Nilai Rupiah</td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="number" value="0" name="nilai" id="nilai" onkeyup="konversi(this.name)">
+                    </td>
+                    <td>
+                        <select name="valas" id="valas" onchange="konversi(this.name)">
+                            <option value="dollar_us" selected>Dollar US</option>
+                            <option value="dollar_singapore">Dollar Singapore</option>
+                            <option value="ringgit">Ringgit Malaysia</option>
+                            <option value="yen">Yen Jepang</option>
+                            <option value="euro">Euro</option>
+                            <option value="riyal">Riyal Arab Saudi</option>
+                        </select>
+                    </td>
+                    <td>
+                        <input type="number" value="0" name="rupiah" id="rupiah" onkeyup="konversi(this.name)">
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+    </form>
+
+    <script>
+        function nilai_valas(mata_uang) {
+            var nilai;
+            switch (mata_uang) {
+                case "dollar_us":
+                    nilai = 9915;
+                    break;
+                case "dollar_singapore":
+                    nilai = 13472;
+                    break;
+                case "ringgit":
+                    nilai = 874;
+                    break;
+                case "yen":
+                    nilai = 120;
+                    break;
+                case "euro":
+                    nilai = 15888;
+                    break;
+                case "riyal":
+                    nilai = 3592;
+                    break;
+            }
+            return nilai;
+        }
+        function konversi(param) {
+            var nilai = document.getElementById("nilai").value;
+            var mata_uang = nilai_valas(document.getElementById("valas").value);
+            var rupiah = document.getElementById("rupiah").value;
+            if (param == "nilai") {
+                hasil = nilai * mata_uang;
+                document.getElementById("rupiah").value = hasil;
+            } else if (param == "valas") {
+                hasil = nilai * mata_uang;
+                document.getElementById("rupiah").value = hasil;
+            } else if (param == "rupiah") {
+                hasil = rupiah / mata_uang;
+                document.getElementById("nilai").value = hasil;
+            }
+        }
+    </script>
+
+</body>
+
+</html>
